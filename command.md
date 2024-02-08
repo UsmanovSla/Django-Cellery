@@ -12,3 +12,14 @@ docker-compose up -d --build
 
 docker exec -it django /bin/sh
 python manage.py startapp taskapp
+python manage.py shell
+
+from cwoker.tasks import sharedtask
+sharedtask.delay()
+
+
+
+
+git add --all
+git commit -m "Msg"
+git push origin main
