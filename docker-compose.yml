@@ -1,6 +1,20 @@
 version: '3.8'
 
 services:
+  flower:
+    image: mher/flower
+    ports:
+      - 5555:5555
+    environment:
+      - CELERY_BROKER_URL=amqp://admin:12345@rabbitmq:5672/
+
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+
   redis:
     image: redis:7.0.11-alpine
 
@@ -25,7 +39,8 @@ services:
     container_name: celery1
     build:
       context: ./dcelery
-    command: celery -A dcelery worker -l INFO -Q celery,celery:1,celery:2,celery:3
+    # command: celery -A dcelery worker -l INFO -Q celery,celery:1,celery:2,celery:3
+    command: celery -A dcelery worker -l INFO -Q tasks
     volumes:
       - ./dcelery:/usr/src/app/
     environment:
@@ -35,6 +50,7 @@ services:
     depends_on:
       - redis
       - django
+      - rabbitmq
 
   # celery2:
   #   container_name: celery2

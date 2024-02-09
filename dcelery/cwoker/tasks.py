@@ -6,7 +6,7 @@ import time
 # def sharedtask():
 #     return
 
-@shared_task
+@shared_task(task_rate_limit='100/m')
 def tp1(queue='celery'):
     time.sleep(3)
     return

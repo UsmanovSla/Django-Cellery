@@ -106,6 +106,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CELERY_BROKEN_URL = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
+# CELERY_BROKEN_URL = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
+CELERY_BROKEN_URL = os.environ.get("CELERY_BROKER", "amqp://admin:12345@rabbitmq:5672/")
 CELERY_RESULT_BACKEND = os.environ.get("CELERY_BACKEND", "redis://redis:6379/0")
 REDIS_HOST = os.environ.get('REDIS_HOST', '127.0.0.1')
