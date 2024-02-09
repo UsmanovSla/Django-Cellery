@@ -73,5 +73,5 @@ http://localhost:5555/
 
 <!-- Git -->
 git add --all
-git commit -m "Msg"
+git commit -m "Celery_Dynamic import task"
 git push origin main
