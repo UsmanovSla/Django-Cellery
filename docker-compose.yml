@@ -40,7 +40,7 @@ services:
     build:
       context: ./dcelery
     # command: celery -A dcelery worker -l INFO -Q celery,celery:1,celery:2,celery:3
-    command: celery -A dcelery worker -l INFO -Q tasks
+    command: celery -A dcelery worker -l INFO -Q tasks,dead_letter -E -B
     volumes:
       - ./dcelery:/usr/src/app/
     environment:

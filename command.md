@@ -8,6 +8,8 @@ django-admin startproject dcelery
 python manage.py startapp taskapp
 
 <!-- Pip -->
+python.exe -m pip install --upgrade pip
+pip install -r dcelery/requirements.txt 
 cd decelery
 pip freeze > requirements.txt
 pip install django
